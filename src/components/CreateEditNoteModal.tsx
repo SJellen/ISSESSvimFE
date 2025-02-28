@@ -136,7 +136,7 @@ export default function CreateEditNoteModal({
 
           {showDeleteConfirmation && (
             <div className="fixed top-0 left-0 w-full h-full bg-slate-700 bg-opacity-75 flex justify-center items-center">
-              <div className="bg-black rounded-md p-4 w-1/2">
+              <div className="bg-black rounded-md p-4 md:max-w-1/2">
                 <h2 className="text-lg font-medium mb-2">Confirm Delete</h2>
                 <p>Are you sure you want to delete this note?</p>
                 <div className="flex justify-end gap-2 mt-4">

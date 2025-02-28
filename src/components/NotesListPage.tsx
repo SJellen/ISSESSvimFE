@@ -38,8 +38,8 @@ export default function NotesListPage() {
       createdAt: "",
       updatedAt: "",
       id: "",
-      title: "",
-      description: "",
+      title: "Create a Note",
+      description: "to get started",
       userId: "",
     }
   );
@@ -113,6 +113,7 @@ export default function NotesListPage() {
     setLoading(true);
     await getNotes(ModalMode.Create, note);
     await refreshNotes();
+    setSelectedNote(note);
     setLoading(false);
   };
 
@@ -176,8 +177,10 @@ export default function NotesListPage() {
           type="button"
           title="Add Note"
           aria-label="Add Note"
+          className="hover:bg-[#1a1a1a]"
           onClick={() => handleModalAction(ModalMode.Create)}
           disabled={isModalOpen}
+
         >
           +
         </button>
@@ -185,7 +188,7 @@ export default function NotesListPage() {
         <h2 className="md:text-2xl">{formattedDate}</h2>
       </div>
 
-      <div className=" h-full flex flex-col-reverse md:flex-row bg-[#242424] rounded-b-md">
+      <div className=" h-full flex flex-col-reverse md:flex-row bg-[#242424] rounded-b-md ">
         <div
           className={`w-full md:w-1/3 ${
             isModalOpen && "opacity-20"
