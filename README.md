@@ -6,12 +6,6 @@ This project is a React application built with TypeScript and Vite. Tailwind for
 
 
 # Screenshots
-<style>
-  img {
-    width: 40%; /* Adjust as needed */
-  }
-</style>
-
 ![NoteDetailModal](./public/screenshots/NoteDetailModal.png)
 ![noteListPage](./public/screenshots/noteListPage.png)
 ![CreateEditNoteModal](./public/screenshots/CreateEditNoteModal.png)
