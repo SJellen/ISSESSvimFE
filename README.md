@@ -1,14 +1,15 @@
 
 # Project Description
 
-This project is a React application built with TypeScript and Vite. Tailwind for styling and toast for error modals. I tried to limit the files to the main 3, so some choices were made in service to that. It took about 6-7 hours over a few days. 
+This project is a React application built with TypeScript and Vite. Tailwind for styling and toast for error modals. I tried to limit the files to the main 3, so some choices were made in service to that. It took about 7-8 hours over a few days. 
 
 
 
 # Screenshots
-![NoteDetailModal](./public/screenshots/NoteDetailModal.png)
+![NoteDetailModal](./public/screenshots/NoteListPage.png)
 ![CreateEditNoteModal](./public/screenshots/CreateEditNoteModal.png)
 ![DeleteConfirmation](./public/screenshots/DeleteConfirmantion.png)
+![Mobile View](./public/screenshots/mobileView.png)
 
 
 # React + TypeScript + Vite
