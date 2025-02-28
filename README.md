@@ -8,7 +8,7 @@ This project is a React application built with TypeScript and Vite. Tailwind for
 # Screenshots
 <style>
   img {
-    width: 40%; /* Adjust as needed */
+    width: 300px;
   }
 </style>
 
