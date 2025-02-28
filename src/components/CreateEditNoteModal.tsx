@@ -96,6 +96,7 @@ export default function CreateEditNoteModal({
               type="text"
               value={title}
               required
+              placeholder="Required"
               onChange={(event) => setTitle(event.target.value)}
               className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 bg-slate-600"
             />
@@ -106,6 +107,7 @@ export default function CreateEditNoteModal({
             <textarea
               value={description}
               required
+              placeholder="Required"
               onChange={(event) => setDescription(event.target.value)}
               className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 h-32 bg-slate-600"
             />
