@@ -5,14 +5,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
-const date = new Date();
-const formattedDate = date.toLocaleString("en-US", {
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
-
 export interface Note {
   createdAt?: string;
   updatedAt?: string;
@@ -27,6 +19,13 @@ export enum ModalMode {
   Create = "Create",
   Edit = "Edit",
   Delete = "Delete",
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export enum DateType {
+  FULL_DATE, // Friday, February 28, 2025
+  SHORT_DATE_TIME, // 02/28/25 11:06 AM
+  SHORT_DATE, // 2/28/25
 }
 
 export default function NotesListPage() {
@@ -162,6 +161,36 @@ export default function NotesListPage() {
     setModalMode(action);
   };
 
+  function formatDateTime(dateString: string, dateType: DateType): string {
+    const date = new Date(dateString);
+    switch (dateType) {
+      case DateType.FULL_DATE:
+        return date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      case DateType.SHORT_DATE_TIME:
+        return `${date.toLocaleDateString("en-US", {
+          month: "2-digit",
+          day: "2-digit",
+          year: "2-digit",
+        })} ${date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })}`;
+      case DateType.SHORT_DATE:
+        return `${date.getMonth() + 1}/${date.getDate()}/${date
+          .getFullYear()
+          .toString()
+          .slice(2)}`;
+      default:
+        throw new Error(`Unsupported date type: ${dateType}`);
+    }
+  }
+
   function Spinner() {
     return (
       <div className="flex items-center justify-center h-full">
@@ -180,12 +209,26 @@ export default function NotesListPage() {
           className="hover:bg-[#1a1a1a]"
           onClick={() => handleModalAction(ModalMode.Create)}
           disabled={isModalOpen}
-
         >
-          +
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1}
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+            />
+          </svg>
         </button>
 
-        <h2 className="md:text-2xl">{formattedDate}</h2>
+        <h2 className="md:text-2xl">
+          {formatDateTime(new Date().toISOString(), DateType.FULL_DATE)}
+        </h2>
       </div>
 
       <div className=" h-full flex flex-col-reverse md:flex-row bg-[#242424] rounded-b-md ">
@@ -198,16 +241,37 @@ export default function NotesListPage() {
             Array.isArray(notes) &&
             notes.map((note: Note) => (
               <div
-                className={`p-1 px-4 border-b-2 border-gray-400/10 border-r-0 text-left  ${
+                className={`p-2 px-4 border-b-2 border-gray-400/10 border-r-0 text-left flex justify-between  ${
                   !isModalOpen &&
                   "hover:pb-6 hover:cursor-pointer hover:border-t-slate-700 hover:bg-[#1d1d1d] "
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}
               >
-                <h2 className="text-md text-gray-200">{note.title}</h2>
-                <p className="text-sm text-gray-400 truncate">
-                  {note.description}
+                <div className="flex gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                    />
+                  </svg>
+
+                  <h2 className="text-md text-gray-200">{note.title}</h2>
+                </div>
+
+                <p className="text-sm text-gray-400">
+                  {(note.updatedAt &&
+                    formatDateTime(note.updatedAt, DateType.SHORT_DATE)) ||
+                    (note.createdAt &&
+                      formatDateTime(note.createdAt, DateType.SHORT_DATE))}
                 </p>
               </div>
             ))}
@@ -219,6 +283,7 @@ export default function NotesListPage() {
             setIsModalOpen={setIsModalOpen}
             setModalMode={setModalMode}
             selectedNote={selectedNote}
+            formatDateTime={formatDateTime}
           />
         )}
 
