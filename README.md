@@ -1,10 +1,26 @@
+
+# Project Description
+
+This project is a React application built with TypeScript and Vite. Tailwind for styling and toast for error modals. I tried to limit the files to the main 3, so some choices were made in service to that. It took about 6-7 hours over a few days. 
+
+
+
+# Screenshots
+<style>
+  img {
+    width: 40%; /* Adjust as needed */
+  }
+</style>
+
+![NoteDetailModal](./public/screenshots/NoteDetailModal.png)
+![noteListPage](./public/screenshots/noteListPage.png)
+![CreateEditNoteModal](./public/screenshots/CreateEditNoteModal.png)
+![DeleteConfirmation](./public/screenshots/DeleteConfirmantion.png)
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-## Project Description
-
-This project is a basic React application built with TypeScript and Vite. It provides a starting point for building web applications with a robust development environment.
 
 ## How to Run the Application
 
