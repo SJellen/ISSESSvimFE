@@ -1,7 +1,7 @@
 
 # Project Description
 
-This project is a React application built with TypeScript and Vite. Tailwind for styling and toast for error modals. I tried to limit the files to the main 3, so some choices were made in service to that. It took about 7-8 hours over a few days. 
+This project is a React application built with TypeScript and Vite. Tailwind for styling and toast for error modals. I tried to limit the files to the main 3, so some choices were made in service to that. It took about 7-8 hours over a few days. I just noticed the video after completing this. The browser I was using must've blocked it. I copied the Assessment Overview and worked off that. I going to put some more time getting a bit closer to the video.
 
 
 

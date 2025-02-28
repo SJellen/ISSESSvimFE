@@ -32,16 +32,17 @@ export default function NotesListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<ModalMode>(ModalMode.Create);
   const [notes, setNotes] = useState<Note[]>([]);
-  const [selectedNote, setSelectedNote] = useState(
-    notes[0] || {
-      createdAt: "",
-      updatedAt: "",
-      id: "",
-      title: "Create a Note",
-      description: "to get started",
-      userId: "",
-    }
-  );
+
+  const defaultNote: Note = {
+    createdAt: "",
+    updatedAt: "",
+    id: "",
+    title: "",
+    description: "",
+    userId: "",
+  };
+
+  const [selectedNote, setSelectedNote] = useState(notes[0] || defaultNote);
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
@@ -112,7 +113,7 @@ export default function NotesListPage() {
     setLoading(true);
     await getNotes(ModalMode.Create, note);
     await refreshNotes();
-    setSelectedNote(note);
+    setSelectedNote(defaultNote);
     setLoading(false);
   };
 
@@ -125,14 +126,7 @@ export default function NotesListPage() {
     setLoading(true);
     await getNotes(ModalMode.Delete, note);
     await refreshNotes();
-    setSelectedNote({
-      createdAt: "",
-      updatedAt: "",
-      id: "",
-      title: "",
-      description: "",
-      userId: "",
-    });
+    setSelectedNote(defaultNote);
     setShowDeleteConfirmation(false);
     setIsModalOpen(false);
     setLoading(false);
@@ -141,14 +135,7 @@ export default function NotesListPage() {
   const handleEditNote = async (note: Note) => {
     setLoading(true);
     await getNotes(ModalMode.Edit, note);
-    setSelectedNote({
-      createdAt: "",
-      updatedAt: "",
-      id: "",
-      title: "",
-      description: "",
-      userId: "",
-    });
+    setSelectedNote(defaultNote);
     await refreshNotes();
     setSelectedNote(note);
     setLoading(false);
@@ -264,7 +251,9 @@ export default function NotesListPage() {
                     />
                   </svg>
 
-                  <h2 className="text-md text-gray-200 truncate ">{note.title}</h2>
+                  <h2 className="text-md text-gray-200 truncate ">
+                    {note.title}
+                  </h2>
                 </div>
 
                 <p className="text-sm text-gray-400">
