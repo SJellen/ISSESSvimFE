@@ -201,7 +201,7 @@ export default function NotesListPage() {
 
   return (
     <div className="md:p-8 h-screen w-screen flex flex-col max-w-7xl rounded-br-md ">
-      <div className="border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] ">
+      <div className="border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2 ">
         <button
           type="button"
           title="Add Note"
@@ -214,7 +214,7 @@ export default function NotesListPage() {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={1}
+            strokeWidth={1.25}
             stroke="currentColor"
             className="size-6"
           >
@@ -241,21 +241,21 @@ export default function NotesListPage() {
             Array.isArray(notes) &&
             notes.map((note: Note) => (
               <div
-                className={`p-2 px-4 border-b-2 border-gray-400/10 border-r-0 text-left flex justify-between  ${
+                className={`p-2 px-4 border-b-2 border-gray-400/10 border-r-0 text-left flex justify-between items-center  ${
                   !isModalOpen &&
                   "hover:pb-6 hover:cursor-pointer hover:border-t-slate-700 hover:bg-[#1d1d1d] "
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}
               >
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1}
                     stroke="currentColor"
-                    className="size-6"
+                    className="size-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -264,7 +264,7 @@ export default function NotesListPage() {
                     />
                   </svg>
 
-                  <h2 className="text-md text-gray-200">{note.title}</h2>
+                  <h2 className="text-md text-gray-200 truncate ">{note.title}</h2>
                 </div>
 
                 <p className="text-sm text-gray-400">

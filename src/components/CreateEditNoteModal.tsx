@@ -85,7 +85,7 @@ export default function CreateEditNoteModal({
 
   return (
     <div
-      className={`w-full md:w-2/3 border-2 border-gray-400/10 h-full md:border-l-0 border-t-0 text-left p-4 bg-slate-700 md:rounded-br-md z-10`}
+      className={`w-full md:w-2/3 border-2 border-gray-400/10 h-full md:border-l-0 md:border-t-0 text-left p-4 bg-slate-700 md:rounded-br-md z-10 `}
     >
       <h1 className="text-2xl p-4  text-center ">{`${modalMode} Note`}</h1>
       <form className="flex flex-col gap-2 p-4  pt-8" onSubmit={handleSubmit}>
