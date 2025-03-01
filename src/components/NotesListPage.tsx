@@ -188,7 +188,7 @@ export default function NotesListPage() {
 
   return (
     <div className="md:p-8 h-screen w-screen flex flex-col max-w-7xl rounded-br-md ">
-      <div className="border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2 ">
+      <div className="border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2.5 ">
         <button
           type="button"
           title="Add Note"
@@ -218,40 +218,42 @@ export default function NotesListPage() {
         </h2>
       </div>
 
-      <div className=" h-full flex flex-col-reverse md:flex-row bg-[#242424] rounded-b-md ">
+      <div className=" h-full flex flex-col-reverse md:flex-row bg-[#242424] rounded-b-md">
         <div
           className={`w-full md:w-1/3 ${
             isModalOpen && "opacity-20"
-          } border-2 border-gray-400/10 h-1/2 md:h-full  overflow-x-scroll border-t-0 rounded-bl-md`}
+          } border-2 border-gray-400/10 h-1/2 md:h-full  overflow-x-scroll  rounded-bl-md border-t-0`}
         >
           {!loading &&
             Array.isArray(notes) &&
             notes.map((note: Note) => (
               <div
-                className={`p-2 px-4 border-b-2 border-gray-400/10 border-r-0 text-left flex justify-between items-center  ${
+                className={`p-4 m-2 border-2 border-gray-400/10 text-left flex justify-between items-center rounded-md shadow-md ${
                   !isModalOpen &&
-                  "hover:pb-6 hover:cursor-pointer hover:border-t-slate-700 hover:bg-[#1d1d1d] "
+                  " hover:cursor-pointer hover:border-zinc-400/10 bg-[#1a1a1a] hover:bg-[#1d1d1d]/50  "
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}
               >
-                <div className="flex gap-2 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1}
-                    stroke="currentColor"
-                    className="size-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                    />
-                  </svg>
+                <div className="flex gap-2 items-center overflow-auto ">
+                  <div className="flex items-center justify-center w-8 h-8">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1}
+                      stroke="currentColor"
+                      className="size-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                      />
+                    </svg>
+                  </div>
 
-                  <h2 className="text-md text-gray-200 truncate ">
+                  <h2 className="text-md text-gray-200 truncate w-full">
                     {note.title}
                   </h2>
                 </div>
