@@ -6,9 +6,9 @@ This project is a React application built with TypeScript and Vite. Tailwind for
 
 
 # Screenshots
-![NoteDetailModal](./public/screenshots/NoteListPage.png)
-![CreateEditNoteModal](./public/screenshots/CreateEditNoteModal.png)
-![DeleteConfirmation](./public/screenshots/DeleteConfirmantion.png)
+![NoteDetailModal](./public/screenshots/NoteListPagePN.png)
+![CreateEditNoteModal](./public/screenshots/CreateEditNoteModalP.png)
+![DeleteConfirmation](./public/screenshots/DeleteConfirmationP.png)
 ![Mobile View](./public/screenshots/mobileView.png)
 
 
