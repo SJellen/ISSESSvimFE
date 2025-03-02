@@ -188,7 +188,7 @@ export default function NotesListPage() {
 
   return (
     <div className="md:p-8 h-screen w-screen flex flex-col max-w-7xl rounded-br-md ">
-      <div className="border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2.5 ">
+      <div className="fixed md:static border-2 border-x-0 border-t-0 md:border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2.5 ">
         <button
           type="button"
           title="Add Note"
@@ -213,7 +213,7 @@ export default function NotesListPage() {
           </svg>
         </button>
 
-        <h2 className="md:text-2xl">
+        <h2 className={`md:text-2xl ${isModalOpen && "opacity-20"}`}>
           {formatDateTime(new Date().toISOString(), DateType.FULL_DATE)}
         </h2>
       </div>
@@ -228,9 +228,12 @@ export default function NotesListPage() {
             Array.isArray(notes) &&
             notes.map((note: Note) => (
               <div
-                className={`p-4 m-2 border-2 border-gray-400/10 text-left flex justify-between items-center rounded-md shadow-md ${
+                className={`p-2 md:p-4 m-2 border-2 border-gray-400/10 text-left flex justify-between items-center rounded-md shadow-md ${
+                  note.id === selectedNote?.id &&
+                  "bg-slate-700/50 hover:bg-slate-700"
+                }  ${
                   !isModalOpen &&
-                  " hover:cursor-pointer hover:border-zinc-400/10 bg-[#1a1a1a] hover:bg-[#1d1d1d]/50  "
+                  " hover:cursor-pointer hover:border-zinc-400/10 bg-[#1a1a1a] hover:bg-[#1d1d1d]/10  "
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}

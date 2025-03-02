@@ -85,10 +85,39 @@ export default function CreateEditNoteModal({
 
   return (
     <div
-      className={`w-full md:w-2/3 border-2 border-zinc-800 h-full   text-left p-4 bg-slate-700 md:rounded-br-md z-10 `}
+      className={`w-full md:w-2/3 border-2 border-zinc-800 h-full text-left p-4 bg-slate-800 md:rounded-br-md z-10 mt-20 md:mt-0 flex flex-col items-center`}
     >
-      <h1 className="text-2xl p-4  text-center ">{`${modalMode} Note`}</h1>
-      <form className="flex flex-col gap-2 p-4  pt-8" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col gap-2 p-4  pt-8 w-full max-w-lg bg-slate-700 rounded-md md:mt-20 shadow-xl shadow-gray-900/50"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-col items-end justify-end  w-full max-w-lg">
+          <button
+            title="Cancel Note"
+            aria-label="Cancel Note"
+            type="button"
+            className="bg-[#1a1a1a] hover:bg-[#242424] text-white font-bold  -mt-4 rounded "
+            onClick={() => setIsModalOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="white"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <h1 className="text-2xl font-bold w-full max-w-lg py-4">{`${modalMode} Note`}</h1>
+
         <div className="flex flex-col gap-4">
           <div className="flex flex-col">
             <label className="text-lg font-medium mb-1">Title:</label>
@@ -98,7 +127,7 @@ export default function CreateEditNoteModal({
               required
               placeholder="Required"
               onChange={(event) => setTitle(event.target.value)}
-              className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 bg-slate-600"
+              className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 bg-slate-600 "
             />
           </div>
 
@@ -115,20 +144,23 @@ export default function CreateEditNoteModal({
         </div>
         <div className="flex justify-end gap-2 pt-10">
           <button
-            className="bg-[#242424] hover:bg-[#1d1d1d] text-white font-bold py-2 px-4 rounded"
-            disabled={title === "" || description === ""}
+            className={`bg-[#1a1a1a] hover:bg-[#242424] text-white font-bold py-2 px-4 rounded ${
+              title === "" || description === ""
+                ? "opacity-50 pointer-events-none"
+                : ""
+            }`}
+            title="Save Note"
+            aria-label="Save Note"
             type="submit"
           >
-            Submit
+            Save
           </button>
-          <button
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            onClick={() => setIsModalOpen(false)}
-          >
-            Cancel
-          </button>
+
           {modalMode === ModalMode.Edit && (
             <button
+              title="Delete Note"
+              aria-label="Delete Note"
+              type="button"
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDeleteButton()}
             >
@@ -157,15 +189,33 @@ export default function CreateEditNoteModal({
                 <div className="flex justify-end gap-2 mt-4">
                   <button
                     className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                    type="button"
+                    title="Cancel Delete Note"
+                    aria-label="Cancel Delete Note"
                     onClick={() => {
                       setShowDeleteConfirmation(false);
                       setModalMode(ModalMode.Edit);
                     }}
                   >
-                    Cancel
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="black"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18 18 6M6 6l12 12"
+                      />
+                    </svg>
                   </button>
                   <button
                     type="button"
+                    title="Confirm Delete Note"
+                    aria-label="Confirm Delete Note"
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleDeleteNote(selectedNote)}
                   >

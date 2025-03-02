@@ -15,7 +15,7 @@ export default function NoteDetailModal({
   formatDateTime,
 }: CreateEditNoteModalProps) {
   return (
-    <div className="w-full md:w-2/3 border-2 border-gray-400/10 h-full border-l-0 border-t-0 text-left p-4 bg-[#1a1a1a] md:bg-[#242424] rounded-br-md flex flex-col justify-between">
+    <div className="w-full md:w-2/3 border-2 border-gray-400/10 h-full border-l-0 border-t-0 text-left p-4 bg-[#1a1a1a] md:bg-[#242424] rounded-br-md flex flex-col justify-between mt-20 md:mt-0">
       <div
         onClick={() => {
           setIsModalOpen(true);
