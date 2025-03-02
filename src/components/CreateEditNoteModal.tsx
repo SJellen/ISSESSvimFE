@@ -85,10 +85,10 @@ export default function CreateEditNoteModal({
 
   return (
     <div
-      className={`w-full md:w-2/3 border-2 border-zinc-800 h-full text-left p-4 bg-slate-800 md:rounded-br-md z-10 mt-20 md:mt-0 flex flex-col items-center`}
+      className={`w-full md:w-2/3 border-2 border-zinc-800 h-full text-left p-4  bg-slate-800 md:rounded-br-md z-10 mt-20 md:mt-0 flex flex-col items-center`}
     >
       <form
-        className="flex flex-col gap-2 p-4  pt-8 w-full max-w-lg bg-slate-700 rounded-md md:mt-20 shadow-xl shadow-gray-900/50"
+        className="flex flex-col gap-2 p-6  pt-8 w-full max-w-lg bg-slate-700 rounded-md md:mt-10 shadow-xl shadow-gray-900/50"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col items-end justify-end  w-full max-w-lg">
@@ -96,7 +96,7 @@ export default function CreateEditNoteModal({
             title="Cancel Note"
             aria-label="Cancel Note"
             type="button"
-            className="bg-[#1a1a1a] hover:bg-[#242424] text-white font-bold  -mt-4 rounded "
+            className="bg-[#1a1a1a] hover:bg-[#242424] text-white font-bold  -mt-2 rounded "
             onClick={() => setIsModalOpen(false)}
           >
             <svg
