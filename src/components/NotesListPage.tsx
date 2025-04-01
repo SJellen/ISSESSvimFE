@@ -187,13 +187,20 @@ export default function NotesListPage() {
   }
 
   return (
-    <div className="md:p-8 h-screen w-screen flex flex-col max-w-7xl rounded-br-md ">
-      <div className="fixed md:static border-2 border-x-0 border-t-0 md:border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2.5 ">
+    <div
+      className="md:p-8 h-screen w-screen flex flex-col max-w-7xl rounded-br-md"
+      role="main"
+      aria-label="Notes List Page"
+    >
+      <div
+        className="fixed md:static border-2 border-x-0 border-t-0 md:border-2 border-gray-400/10  h-20 w-full flex flex-row justify-between items-center p-4 rounded-t-md bg-[#242424] pl-2.5"
+        role="banner"
+      >
         <button
           type="button"
           title="Add Note"
-          aria-label="Add Note"
-          className="hover:bg-[#1a1a1a]"
+          aria-label="Add new note"
+          className="text-gray-400 hover:text-white transition-colors"
           onClick={() => handleModalAction(ModalMode.Create)}
           disabled={isModalOpen}
         >
@@ -223,6 +230,8 @@ export default function NotesListPage() {
           className={`w-full md:w-1/3 ${
             isModalOpen && "opacity-20"
           } border-2 border-gray-400/10 h-1/2 md:h-full  overflow-x-scroll  rounded-bl-md border-t-0`}
+          role="list"
+          aria-label="Notes list"
         >
           {!loading &&
             Array.isArray(notes) &&
@@ -237,6 +246,9 @@ export default function NotesListPage() {
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}
+                role="listitem"
+                aria-label={`Note: ${note.title}`}
+                aria-selected={note.id === selectedNote?.id}
               >
                 <div className="flex gap-2 items-center overflow-auto ">
                   <div className="flex items-center justify-center w-8 h-8">

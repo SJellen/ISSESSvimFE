@@ -86,15 +86,19 @@ export default function CreateEditNoteModal({
   return (
     <div
       className={`w-full md:w-2/3 border-2 border-zinc-800 h-full text-left p-4  bg-slate-800 md:rounded-br-md z-10 mt-20 md:mt-0 flex flex-col items-center`}
+      role="dialog"
+      aria-label={`${modalMode} note modal`}
+      aria-modal="true"
     >
       <form
         className="flex flex-col gap-2 p-6  pt-8 w-full max-w-lg bg-slate-700 rounded-md md:mt-10 shadow-xl shadow-gray-900/50"
         onSubmit={handleSubmit}
+        aria-label={`${modalMode} note form`}
       >
         <div className="flex flex-col items-end justify-end  w-full max-w-lg">
           <button
             title="Cancel Note"
-            aria-label="Cancel Note"
+            aria-label="Cancel and close modal"
             type="button"
             className="bg-[#1a1a1a] hover:bg-[#242424] text-white font-bold  -mt-2 rounded "
             onClick={() => setIsModalOpen(false)}
@@ -120,25 +124,38 @@ export default function CreateEditNoteModal({
 
         <div className="flex flex-col gap-4">
           <div className="flex flex-col">
-            <label className="text-lg font-medium mb-1">Title:</label>
+            <label className="text-lg font-medium mb-1" htmlFor="note-title">
+              Title:
+            </label>
             <input
+              id="note-title"
               type="text"
               value={title}
               required
               placeholder="Required"
               onChange={(event) => setTitle(event.target.value)}
-              className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 bg-slate-600 "
+              className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 bg-slate-600"
+              aria-required="true"
+              aria-label="Note title"
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-lg font-medium mb-1">Description:</label>
+            <label
+              className="text-lg font-medium mb-1"
+              htmlFor="note-description"
+            >
+              Description:
+            </label>
             <textarea
+              id="note-description"
               value={description}
               required
               placeholder="Required"
               onChange={(event) => setDescription(event.target.value)}
               className="rounded-md px-2 py-1  focus:outline-none focus:ring focus:ring-gray-500 h-32 bg-slate-600"
+              aria-required="true"
+              aria-label="Note description"
             />
           </div>
         </div>
@@ -150,8 +167,10 @@ export default function CreateEditNoteModal({
                 : ""
             }`}
             title="Save Note"
-            aria-label="Save Note"
+            aria-label="Save note"
             type="submit"
+            disabled={title === "" || description === ""}
+            aria-disabled={title === "" || description === ""}
           >
             Save
           </button>
@@ -159,7 +178,7 @@ export default function CreateEditNoteModal({
           {modalMode === ModalMode.Edit && (
             <button
               title="Delete Note"
-              aria-label="Delete Note"
+              aria-label="Delete note"
               type="button"
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDeleteButton()}
@@ -182,7 +201,12 @@ export default function CreateEditNoteModal({
           )}
 
           {showDeleteConfirmation && (
-            <div className="fixed top-0 left-0 w-full h-full bg-slate-700 bg-opacity-75 flex justify-center items-center">
+            <div
+              className="fixed top-0 left-0 w-full h-full bg-slate-700 bg-opacity-75 flex justify-center items-center"
+              role="dialog"
+              aria-label="Delete confirmation dialog"
+              aria-modal="true"
+            >
               <div className="bg-black rounded-md p-4 md:max-w-1/2">
                 <h2 className="text-lg font-medium mb-2">Confirm Delete</h2>
                 <p>Are you sure you want to delete this note?</p>
@@ -191,7 +215,7 @@ export default function CreateEditNoteModal({
                     className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
                     type="button"
                     title="Cancel Delete Note"
-                    aria-label="Cancel Delete Note"
+                    aria-label="Cancel delete note"
                     onClick={() => {
                       setShowDeleteConfirmation(false);
                       setModalMode(ModalMode.Edit);
