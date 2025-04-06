@@ -230,8 +230,9 @@ export default function NotesListPage() {
           className={`w-full md:w-1/3 ${
             isModalOpen && "opacity-20"
           } border-2 border-gray-400/10 h-1/2 md:h-full  overflow-x-scroll  rounded-bl-md border-t-0`}
-          role="list"
+          role="listbox"
           aria-label="Notes list"
+          aria-multiselectable="false"
         >
           {!loading &&
             Array.isArray(notes) &&
@@ -246,7 +247,7 @@ export default function NotesListPage() {
                 }`}
                 key={note.id}
                 onClick={() => setSelectedNote(note)}
-                role="listitem"
+                role="option"
                 aria-label={`Note: ${note.title}`}
                 aria-selected={note.id === selectedNote?.id}
               >
